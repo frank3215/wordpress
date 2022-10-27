@@ -1,0 +1,131 @@
+---
+layout: post
+title: 命令行小技巧
+date: 2022-10-27 16:46:00.000000000 +08:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- 输出
+tags: []
+meta: {}
+author:
+  login: admin
+  email: chengefei2003@163.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+permalink: "/2022/10/27/%e5%91%bd%e4%bb%a4%e8%a1%8c-0-2/"
+---
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdae1918">1. rolldice</a></li>
+<li><a href="#orgb5c2b1b">2. wget</a>
+<ul>
+<li><a href="#orgbe542f7">2.1. <code>-m</code> 或 <code>-r</code> 无效，是因为wget默认遵照该网站的robot.txt，需要用 <code>-erobots=off</code> 。</a></li>
+</ul>
+</li>
+<li><a href="#org5f1113f">3. <span class="todo TODO">TODO</span> 下载torrent</a>
+<ul>
+<li><a href="#orgf18ec02">3.1. <span class="todo TODO">TODO</span> rTorrent <code>[0/1]</code></a></li>
+</ul>
+</li>
+<li><a href="#org6e3de66">4. 录制命令：asciinema</a></li>
+<li><a href="#orgf4b013f">5. <span class="timestamp-wrapper"><span class="timestamp">[2022-10-27 Thu] </span></span> 包管理：Homebrew</a></li>
+<li><a href="#org3d9ee11">6. <span class="timestamp-wrapper"><span class="timestamp">[2022-10-27 Thu] </span></span> 命令完成后自动提醒：iTerm 很强！</a></li>
+<li><a href="#org1807e9c">7. <span class="timestamp-wrapper"><span class="timestamp">[2022-10-27 Thu] </span></span> 响铃</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdae1918" class="outline-2">
+<h2 id="orgdae1918"><span class="section-number-2">1.</span> rolldice</h2>
+<div class="outline-text-2" id="text-1">
+<p> 直接用即可，支持 <code>1d6 + ...</code> 之类的写法，详见<a href="https://manpages.ubuntu.com/manpages/trusty/man6/rolldice.6.html">manual</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgb5c2b1b" class="outline-2">
+<h2 id="orgb5c2b1b"><span class="section-number-2">2.</span> wget</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgbe542f7" class="outline-3">
+<h3 id="orgbe542f7"><span class="section-number-3">2.1.</span> <code>-m</code> 或 <code>-r</code> 无效，是因为wget默认遵照该网站的robot.txt，需要用 <code>-erobots=off</code> 。</h3>
+</div>
+</div>
+<div id="outline-container-org5f1113f" class="outline-2">
+<h2 id="org5f1113f"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> 下载torrent</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.google.com/search?q=command+line+bit+torrent">https://www.google.com/search?q=command+line+bit+torrent</a>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://askubuntu.com/questions/65387/is-there-bittorrent-software-that-runs-in-a-terminal">https://askubuntu.com/questions/65387/is-there-bittorrent-software-that-runs-in-a-terminal</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.fosslinux.com/8688/how-to-download-torrents-using-the-command-line-in-terminal.htm">https://www.fosslinux.com/8688/how-to-download-torrents-using-the-command-line-in-terminal.htm</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.addictivetips.com/ubuntu-linux-tips/download-torrents-from-the-command-line-linux/">https://www.addictivetips.com/ubuntu-linux-tips/download-torrents-from-the-command-line-linux/</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.youtube.com/watch?v=NVOLRXFhczU">https://www.youtube.com/watch?v=NVOLRXFhczU</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.youtube.com/watch?v=spqTxmr3NHM">https://www.youtube.com/watch?v=spqTxmr3NHM</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://harbhag.wordpress.com/2010/06/30/tutorial-using-rtorrent-on-linux-like-a-pro/">https://harbhag.wordpress.com/2010/06/30/tutorial-using-rtorrent-on-linux-like-a-pro/</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.reddit.com/r/commandline/comments/7t3h21/good_cli_torrent_client/">https://www.reddit.com/r/commandline/comments/7t3h21/good_cli_torrent_client/</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://github.com/bittorrent/btc">https://github.com/bittorrent/btc</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.imore.com/how-use-command-line-download-bittorrent-files-macos">https://www.imore.com/how-use-command-line-download-bittorrent-files-macos</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.linuxtechi.com/rtorrent-command-line-bittorrent-client-ubuntu-linux/">https://www.linuxtechi.com/rtorrent-command-line-bittorrent-client-ubuntu-linux/</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://thelinuxcode.com/download-torrent-command-line-ubuntu/">https://thelinuxcode.com/download-torrent-command-line-ubuntu/</a></li>
+</ul>
+</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.google.com/search?q=download+magnet+links+linux+command+line">https://www.google.com/search?q=download+magnet+links+linux+command+line</a>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://superuser.com/questions/1334218/how-can-i-download-magnet-links-through-the-command-line-with-rtorrent-on-linux">https://superuser.com/questions/1334218/how-can-i-download-magnet-links-through-the-command-line-with-rtorrent-on-linux</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://linuxpip.org/rtorrent-magnet-links/">https://linuxpip.org/rtorrent-magnet-links/</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://unix.stackexchange.com/questions/200540/command-line-tool-for-a-single-download-of-a-torrent-like-wget-or-curl">https://unix.stackexchange.com/questions/200540/command-line-tool-for-a-single-download-of-a-torrent-like-wget-or-curl</a></li>
+</ul>
+</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.google.com/search?q=mac+bittorrent+client">https://www.google.com/search?q=mac+bittorrent+client</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.google.com/search?q=use+rtorrent+to+download+magnet+links">https://www.google.com/search?q=use+rtorrent+to+download+magnet+links</a>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://linuxpip.org/rtorrent-magnet-links/">https://linuxpip.org/rtorrent-magnet-links/</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="outline-container-orgf18ec02" class="outline-3">
+<h3 id="orgf18ec02"><span class="section-number-3">3.1.</span> <span class="todo TODO">TODO</span> rTorrent <code>[0/1]</code></h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.google.com/search?q=Could+not+create+download%3A+Could+not+find+any+trackers">https://www.google.com/search?q=Could+not+create+download%3A+Could+not+find+any+trackers</a>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://bbs.archlinux.org/viewtopic.php?id=260359">https://bbs.archlinux.org/viewtopic.php?id=260359</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e3de66" class="outline-2">
+<h2 id="org6e3de66"><span class="section-number-2">4.</span> 录制命令：asciinema</h2>
+<div class="outline-text-2" id="text-4">
+<p> <code>brew install asciinema</code> 之后，用 <code>asciinema rec</code> 即可！ </p>
+</div>
+</div>
+<div id="outline-container-orgf4b013f" class="outline-2">
+<h2 id="orgf4b013f"><span class="section-number-2">5.</span> <span class="timestamp-wrapper"><span class="timestamp">[2022-10-27 Thu] </span></span> 包管理：Homebrew</h2>
+<div class="outline-text-2" id="text-5">
+<p> <a href="https://brew.sh/">https://brew.sh/</a> </p>
+<p> 所有人都用。不多说了。 </p>
+</div>
+</div>
+<div id="outline-container-org3d9ee11" class="outline-2">
+<h2 id="org3d9ee11"><span class="section-number-2">6.</span> <span class="timestamp-wrapper"><span class="timestamp">[2022-10-27 Thu] </span></span> 命令完成后自动提醒：iTerm 很强！</h2>
+<div class="outline-text-2" id="text-6">
+<p> Ubuntu 好像可以直接用 <code>spd-say done</code> ，见。 </p>
+<p> macOS的话，用 <code>say xxx</code> 即可，或者用 <code>terminal-notifier</code> ，见<a href="https://apple.stackexchange.com/questions/9412/how-to-get-a-notification-when-my-commands-are-done">macos - How to get a notification when my commands are done - Ask Different</a>。 </p>
+<p> 如果用的是 iTerm 的话，则可以（在安装完 Shell Integration 之后）使用 ⌥⌘A （fn-command-A）来 <code>Alert on next mark</code> 。非常方便！——甚至在命令运行到一半的时候也可以用！ </p>
+</div>
+</div>
+<div id="outline-container-org1807e9c" class="outline-2">
+<h2 id="org1807e9c"><span class="section-number-2">7.</span> <span class="timestamp-wrapper"><span class="timestamp">[2022-10-27 Thu] </span></span> 响铃</h2>
+<div class="outline-text-2" id="text-7">
+<p> <code>tpub bel</code> 即可，见<a href="https://superuser.com/questions/969080/how-to-ring-the-system-bell-from-command-line">linux - How to ring the system bell from command line? - Super User</a>。</p>
+</div>
+</div>

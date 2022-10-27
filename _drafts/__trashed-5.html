@@ -1,0 +1,593 @@
+---
+layout: post
+title: org-mode
+date:
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: trash
+categories:
+- 输出
+tags: []
+meta:
+  _wp_trash_meta_status: draft
+  _wp_trash_meta_time: '1666854724'
+  _wp_desired_post_slug: ''
+author:
+  login: admin
+  email: chengefei2003@163.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+permalink: "/"
+---
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5057d5a">1. org-attach</a>
+<ul>
+<li><a href="#orgd232593">1.1. 方便地添加附件链接</a></li>
+<li><a href="#org6752fc7">1.2. 在默认文件浏览器中打开org-attach的文件夹</a></li>
+</ul>
+</li>
+<li><a href="#org5e6620b">2. org-agenda</a>
+<ul>
+<li><a href="#orgbe04f5c">2.1. Agenda Files</a></li>
+<li><a href="#org20f1b84">2.2. 启动时打开org-agenda</a></li>
+<li><a href="#orgbf1a37d">2.3. org-agenda显示clocked time</a></li>
+<li><a href="#org0f00fa6">2.4. &amp; Window Split - <code>(setq org-agenda-window-setup 'current-window)</code></a></li>
+<li><a href="#orgc86eb33">2.5. 开多个org-agenda</a></li>
+</ul>
+</li>
+<li><a href="#org409b263">3. org-export</a>
+<ul>
+<li><a href="#org4acb9fd">3.1. 导出为Markdown</a></li>
+<li><a href="#orgf2a1556">3.2. 只导出一个子树</a></li>
+<li><a href="#orgf7f405c">3.3. 导出特定部分</a></li>
+<li><a href="#org5566665">3.4. Error: Unable to resolve link</a></li>
+<li><a href="#orgd763ddf">3.5. beamer</a>
+<ul>
+<li><a href="#orga18bb97">3.5.1. 显示不出section的名字</a></li>
+<li><a href="#org016319e">3.5.2. 导出选项里没有beamer</a></li>
+<li><a href="#orgdd04325">3.5.3. 长beamer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org57e4b69">4. org</a>
+<ul>
+<li><a href="#org2819a37">4.1. 写代码块</a></li>
+<li><a href="#orgd2b7467">4.2. 把时间戳向前移动一周</a></li>
+<li><a href="#orgefa281e">4.3. 把标题变成列表</a></li>
+<li><a href="#orgae187a1">4.4. 复制、剪切与拷贝整个子树</a></li>
+<li><a href="#org17ad761">4.5. Subtrees</a></li>
+<li><a href="#org681bea9">4.6. 把一整个子树标记为 DONE</a></li>
+<li><a href="#org1fdbaac">4.7. 显示图片</a></li>
+<li><a href="#orgca64512">4.8. 移动整个子树： <code>M-UP</code> 和 <code>M-DOWN</code></a></li>
+<li><a href="#org71de75a">4.9. Code Blocks： <code>C-C C-,</code></a></li>
+<li><a href="#org2414649">4.10. folding可以不同的分屏： <code>M-x clone-indirect-buffer</code></a></li>
+</ul>
+</li>
+<li><a href="#orge988d03">5. 启动时如何显示</a></li>
+<li><a href="#orgc0decef">6. 外观</a>
+<ul>
+<li><a href="#org91a6c61">6.1. Org Indent Mode</a></li>
+<li><a href="#org24d0dcf">6.2. 设置heading大小为1</a></li>
+<li><a href="#org32d5a85">6.3. 中英文对齐 <code>[1/1]</code></a></li>
+<li><a href="#org58fdd56">6.4. 美化 Org Mode</a>
+<ul>
+<li><a href="#org6e76d06">6.4.1. Org Modern</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org622fb75">7. TODOs</a>
+<ul>
+<li><a href="#org96a520e">7.1. TODO的优先级</a></li>
+<li><a href="#orgd5156c9">7.2. 使用计时器</a></li>
+<li><a href="#orgda8d9c5">7.3. Creating Timestamps, Deadlines and Scheduling</a></li>
+<li><a href="#org09f5d45">7.4. "[ ]" Items</a></li>
+<li><a href="#org77688f8">7.5. Closing Items</a></li>
+<li><a href="#org726a31b">7.6. 跟踪TODO</a></li>
+</ul>
+</li>
+<li><a href="#org0e73b6f">8. 时间戳</a>
+<ul>
+<li><a href="#org4a5dfa9">8.1. 加带时间戳的note</a></li>
+<li><a href="#org6400b56">8.2. 插入带小时和分钟的时间戳</a></li>
+<li><a href="#org1c27255">8.3. 重复事件</a></li>
+</ul>
+</li>
+<li><a href="#org04fe52e">9. Clock</a>
+<ul>
+<li><a href="#org077db06">9.1. Manipulating Clocked Time</a></li>
+<li><a href="#orge0e57d3">9.2. Show Clocked Time</a></li>
+<li><a href="#orged9373d">9.3. Clock Table</a></li>
+<li><a href="#org1a195db">9.4. show in agenda</a></li>
+<li><a href="#orgb5cd8fc">9.5. org-clock-convenience</a></li>
+<li><a href="#org66348a0">9.6. Emacs as a Time Tracker | Bhanuka Mallawaarachchi</a></li>
+<li><a href="#org8ea8272">9.7. Clocking Time with Emacs Org :: Sacha Chua</a></li>
+<li><a href="#orga0b7f3c">9.8. 继续最后一个clock</a></li>
+</ul>
+</li>
+<li><a href="#org793c8fd">10. 打开手册</a></li>
+<li><a href="#org0b9a8e9">11. 跨文件搜索</a></li>
+<li><a href="#org2929bca">12. RSS Feeds</a></li>
+<li><a href="#org7c043b1">13. 博客</a></li>
+<li><a href="#org8e3adc4">14. Column View</a>
+<ul>
+<li><a href="#org1d29a57">14.1. 时间戳</a></li>
+<li><a href="#org239a75a">14.2. 卡顿</a></li>
+</ul>
+</li>
+<li><a href="#org21bfc52">15. Dynamic Blocks</a>
+<ul>
+<li><a href="#org4fa424f">15.1. Capturing Column View</a></li>
+</ul>
+</li>
+<li><a href="#org2d718d7">16. Refile</a></li>
+</ul>
+</div>
+</div>
+<p> <a href="https://orgmode.org/manual/index.html">https://orgmode.org/manual/index.html</a> <a href="https://www.reddit.com/r/orgmode/">https://www.reddit.com/r/orgmode/</a> <a href="https://orgmode.org/worg/org-faq.html">https://orgmode.org/worg/org-faq.html</a> <a href="https://emacs-china.org/">https://emacs-china.org/</a> </p>
+<div id="outline-container-org5057d5a" class="outline-2">
+<h2 id="org5057d5a"><span class="section-number-2">1.</span> org-attach</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgd232593" class="outline-3">
+<h3 id="orgd232593"><span class="section-number-3">1.1.</span> 方便地添加附件链接</h3>
+<div class="outline-text-3" id="text-1-1">
+<p> 在 <code>.emacs</code> 里加一句 <code>(setq org-attach-store-link-p 'attached)</code> 即可，见<a href="https://emacs.stackexchange.com/questions/60359/is-there-a-quicker-way-to-create-links-to-attachments">此</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org6752fc7" class="outline-3">
+<h3 id="org6752fc7"><span class="section-number-3">1.2.</span> 在默认文件浏览器中打开org-attach的文件夹</h3>
+<div class="outline-text-3" id="text-1-2">
+<p> 用 <code>(add-to-list 'org-file-apps '(directory . default))</code> 即可，类似<a href="https://emacs.stackexchange.com/questions/10426/org-mode-link-to-open-directory-in-dired">这个问答</a>。 还可以用字符串以及 <code>%s</code> ，见<a href="https://emacs.stackexchange.com/questions/29902/more-detailed-description-of-how-to-set-up-org-file-apps-for-orgmode-9-0">这个问答</a>。 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5e6620b" class="outline-2">
+<h2 id="org5e6620b"><span class="section-number-2">2.</span> org-agenda</h2>
+<div class="outline-text-2" id="text-2">
+<p> 见<a href="https://orgmode.org/manual/Agenda-Views.html">手册</a>。命令见<a href="https://orgmode.org/manual/Agenda-Commands.html">这部分</a>。 </p>
+<p> 快捷键： </p>
+<ul class="org-ul">
+<li><code>b</code> 与 <code>f</code> 来前进与后退。</li>
+<li><code>R</code> 显示 Clock Table</li>
+<li><code>l</code> 打开 Logging。 <code>C-u C-u l</code> 只显示clock。</li>
+</ul>
+</div>
+<div id="outline-container-orgbe04f5c" class="outline-3">
+<h3 id="orgbe04f5c"><span class="section-number-3">2.1.</span> Agenda Files</h3>
+<div class="outline-text-3" id="text-2-1">
+<p> <code>C-c [</code> Add current file to the list of agenda files. <code>C-c ]</code> Remove current file from the list of agenda files. <code>C-'</code> <code>C-,</code> Cycle through agenda file list, visiting one file after the other. </p>
+</div>
+</div>
+<div id="outline-container-org20f1b84" class="outline-3">
+<h3 id="org20f1b84"><span class="section-number-3">2.2.</span> 启动时打开org-agenda</h3>
+<div class="outline-text-3" id="text-2-2">
+<p> <code>(add-hook 'after-init-hook 'org-agenda-list)</code> 即可，见<a href="https://stackoverflow.com/questions/2010539/how-can-i-show-the-org-mode-agenda-on-emacs-start-up">此问答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgbf1a37d" class="outline-3">
+<h3 id="orgbf1a37d"><span class="section-number-3">2.3.</span> org-agenda显示clocked time</h3>
+<div class="outline-text-3" id="text-2-3">
+<p> <code>l</code> （或 <code>v l</code> ，也即 <code>org-agenda-log-mode</code> ）即可。 </p>
+<p> 或者用 <code>R</code> （即 <code>clock-agenda-clockreport-mode</code> ）即可。另外，可以用 <code>org-agenda-clockreport-parameter-plist</code> 来定义它的行为，见此<a href="https://stackoverflow.com/questions/55985986/how-to-customize-the-depth-of-org-agenda-clocktable">问答</a>或此<a href="https://emacs.stackexchange.com/questions/52048/drop-rows-with-zero-time-in-org-mode-agenda-clockreport">问答</a>。好像也可以用 <code>org-clocktable-default</code> ，见此<a href="https://emacs.stackexchange.com/questions/53950/how-can-i-format-the-orgmode-clocktable-in-the-agenda-view">问答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org0f00fa6" class="outline-3">
+<h3 id="org0f00fa6"><span class="section-number-3">2.4.</span> &amp; Window Split - <code>(setq org-agenda-window-setup 'current-window)</code></h3>
+<div class="outline-text-3" id="text-2-4">
+<p> Type <code>C-h v org-agenda-window-setup</code> for other options. <a href="https://stackoverflow.com/questions/10635989/emacs-org-agenda-list-destroy-my-windows-splits">https://stackoverflow.com/questions/10635989/emacs-org-agenda-list-destroy-my-windows-splits</a> </p>
+</div>
+</div>
+<div id="outline-container-orgc86eb33" class="outline-3">
+<h3 id="orgc86eb33"><span class="section-number-3">2.5.</span> 开多个org-agenda</h3>
+<div class="outline-text-3" id="text-2-5">
+<p> 用 <code>M-x org-toggle-sticky-agenda</code> 即可，或者在 Agenda Dispatcher 里按 <code>*</code> 。 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org409b263" class="outline-2">
+<h2 id="org409b263"><span class="section-number-2">3.</span> org-export</h2>
+<div class="outline-text-2" id="text-3">
+<p> 详见<a href="https://orgmode.org/manual/Exporting.html">手册</a>。 </p>
+</div>
+<div id="outline-container-org4acb9fd" class="outline-3">
+<h3 id="org4acb9fd"><span class="section-number-3">3.1.</span> 导出为Markdown</h3>
+<div class="outline-text-3" id="text-3-1">
+<p> 直接 <code>C-c C-e</code> ，在选择页面输入 <code>m m</code> 即可，见<a href="https://orgmode.org/manual/Markdown-Export.html">手册</a>。 </p>
+<p> 不过，可能需要用 <code>M-x customize-option</code> 先改一下 <code>org-export-backends</code> ，开启 Markdown 选项，见<a href="https://emacs.stackexchange.com/questions/4279/exporting-from-org-mode-to-markdown">此问答</a>。或者在.emacs里加一句 <code>(require 'ox-md)</code> ，见<a href="https://orgmode.org/manual/Exporting.html">手册</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgf2a1556" class="outline-3">
+<h3 id="orgf2a1556"><span class="section-number-3">3.2.</span> 只导出一个子树</h3>
+<div class="outline-text-3" id="text-3-2">
+<p> 用 <code>C-c C-e C-s</code> 即可，见<a href="https://stackoverflow.com/questions/24221080/how-to-export-full-or-partial-content-of-an-org-file-on-demand">此问答</a>，以及<a href="https://orgmode.org/manual/The-Export-Dispatcher.html">手册</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgf7f405c" class="outline-3">
+<h3 id="orgf7f405c"><span class="section-number-3">3.3.</span> 导出特定部分</h3>
+<div class="outline-text-3" id="text-3-3">
+<p> 把要导出的子树用 <code>:export:</code> 标记即可，见<a href="https://stackoverflow.com/questions/24221080/how-to-export-full-or-partial-content-of-an-org-file-on-demand">问答</a>。 </p>
+<p> 导出整个文档时，使用 <code>#+EXCLUDE_TAGS: export</code> 即可。 </p>
+</div>
+</div>
+<div id="outline-container-org5566665" class="outline-3">
+<h3 id="org5566665"><span class="section-number-3">3.4.</span> Error: Unable to resolve link</h3>
+<div class="outline-text-3" id="text-3-4">
+<p> 直接暴力改 <code>org-export-with-broken-links</code> 或者用 <code>#+OPTIONS: broken-links:t</code> 应该可以解决问题。见<a href="https://github.com/syl20bnr/spacemacs/issues/13387">此issue</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgd763ddf" class="outline-3">
+<h3 id="orgd763ddf"><span class="section-number-3">3.5.</span> beamer</h3>
+<div class="outline-text-3" id="text-3-5">
+<p> 文档是<a href="https://orgmode.org/manual/Beamer-Export.html">Beamer Export (The Org Manual)</a>。<a href="https://orgmode.org/manual/A-Beamer-example.html">这里</a>是一个例子。教程见<a href="https://orgmode.org/worg/exporters/beamer/tutorial.html">Writing Beamer presentations in org-mode</a>或<a href="https://orgmode.org/worg/exporters/beamer/beamer-dual-format.html">Using Beamer export to produce slideshows and article-style handouts from the same org source</a>，<a href="https://orgmode.org/worg/exporters/beamer/index.html">Beamer export with Org-mode</a>里还有更多。 </p>
+<p> 但是，具体参数参考<a href="https://orgmode.org/manual/Export-Settings.html">Export Settings (The Org Manual)</a>以及<a href="https://orgmode.org/manual/Table-of-Contents.html">Table of Contents (The Org Manual)</a>。 </p>
+<p> 文档里给出了一个例子：<a href="https://orgmode.org/manual/A-Beamer-example.html">A Beamer example (The Org Manual)</a>。 </p>
+<p> 据说有一个 Minor Mode 的样子：<a href="https://orgmode.org/manual/Editing-support.html">Editing support (The Org Manual)</a>。 </p>
+<ul class="org-ul">
+<li><a href="https://tippenhauer.de/post/writing-presentations-in-org-mode-markup/">Writing Presentations in Org-mode Markup | Nils Ole Tippenhauer</a>、</li>
+<li><a href="https://v0dro.in/blog/2018/11/15/presentations-with-org-mode-and-beamer/">Presentations with org-mode and beamer. | code, travel and explore.</a>、</li>
+<li><a href="https://github.com/fniessen/refcard-org-beamer">fniessen/refcard-org-beamer: Org Beamer reference card</a>等。</li>
+<li><a href="https://wiki.softwareheritage.org/wiki/Presentation_with_org_beamer">Presentation with org beamer - Software Heritage Wiki</a></li>
+<li><a href="https://www.maketecheasier.com/create-beautiful-beamer-slides-with-emacs/">How to Create Beautiful Beamer Slides with Emacs - Make Tech Easier</a></li>
+</ul>
+<p> 麻烦的一点是 <code>\pause</code> 要用 <code>#+BEAMER: \pause</code> 才行……见<a href="https://orgmode.org/manual/Beamer-specific-syntax.html">Beamer specific syntax (The Org Manual)</a>。 </p>
+</div>
+<div id="outline-container-orga18bb97" class="outline-4">
+<h4 id="orga18bb97"><span class="section-number-4">3.5.1.</span> 显示不出section的名字</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p> theme 问题，把主题从 default 改成 AnnArbor 之类的的应该就可以了。 </p>
+</div>
+</div>
+<div id="outline-container-org016319e" class="outline-4">
+<h4 id="org016319e"><span class="section-number-4">3.5.2.</span> 导出选项里没有beamer</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p> 需要自己加backend。 </p>
+</div>
+</div>
+<div id="outline-container-orgdd04325" class="outline-4">
+<h4 id="orgdd04325"><span class="section-number-4">3.5.3.</span> 长beamer</h4>
+<div class="outline-text-4" id="text-3-5-3">
+<p> 据说用 <code>:BEAMER_opt: allowframebreaks,label=</code> 即可，见<a href="https://tex.stackexchange.com/questions/496439/autobreak-allowframebreaks-allowpagebreaks-problem-in-long-orgbeamer-file-when">org mode - autobreak/allowframebreaks/allowpagebreaks problem in long Org+Beamer file when exporting to long slides - TeX - LaTeX Stack Exchange</a> </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org57e4b69" class="outline-2">
+<h2 id="org57e4b69"><span class="section-number-2">4.</span> org</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org2819a37" class="outline-3">
+<h3 id="org2819a37"><span class="section-number-3">4.1.</span> 写代码块</h3>
+<div class="outline-text-3" id="text-4-1">
+<p> 见<a href="https://orgmode.org/manual/Structure-of-Code-Blocks.html">手册</a>，如下（或者用 <code>C-c C-,</code> 调出选单，见<a href="https://orgmode.org/manual/Structure-Templates.html">手册</a>）： </p>
+<div class="org-src-container">
+<label class="org-src-name"><em> Name: <name>.</name></em></label></p>
+<pre class="src src-<language>" id="<name>">&lt;body&gt;
+</pre>
+</div>
+<p> 代码块的更多见<a href="https://orgmode.org/manual/Working-with-Source-Code.html">手册</a>。（<a href="https://orgmode.org/guide/Working-with-Source-Code.html">指南</a>也有） </p>
+</div>
+</div>
+<div id="outline-container-orgd2b7467" class="outline-3">
+<h3 id="orgd2b7467"><span class="section-number-3">4.2.</span> 把时间戳向前移动一周</h3>
+<div class="outline-text-3" id="text-4-2">
+<p> <code>C-c .</code> 调出日历，然后 <code>S-UP</code> 即可在日历中移动，见<a href="https://emacs.stackexchange.com/questions/46619/shift-date-by-one-week-in-org-mode">此回答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgefa281e" class="outline-3">
+<h3 id="orgefa281e"><span class="section-number-3">4.3.</span> 把标题变成列表</h3>
+<div class="outline-text-3" id="text-4-3">
+<p> <code>C-c -</code> 即可（反过来是 <code>C-c *</code> ），见<a href="https://emacs.stackexchange.com/questions/7856/how-to-turn-a-heading-into-a-list-item-in-org-mode">此回答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgae187a1" class="outline-3">
+<h3 id="orgae187a1"><span class="section-number-3">4.4.</span> 复制、剪切与拷贝整个子树</h3>
+<div class="outline-text-3" id="text-4-4">
+<p> <code>C-c C-x C-w</code> （剪切） / <code>C-c C-x M-w</code> （复制） 与 <code>C-c C-x C-y</code> ，见<a href="https://emacs.stackexchange.com/questions/35654/command-to-copy-and-delete-subtree-in-org-mode">此回答</a>。（用 <code>C-y</code> 粘贴的话不会自动调整层级！） </p>
+<p> 见<a href="https://orgmode.org/manual/Structure-Editing.html">Structure Editing (The Org Manual)</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org17ad761" class="outline-3">
+<h3 id="org17ad761"><span class="section-number-3">4.5.</span> Subtrees</h3>
+<div class="outline-text-3" id="text-4-5">
+<p> <code>C-c C-x C-w</code> (org-cut-subtree) see <a href="https://orgmode.org/manual/Structure-Editing.html">https://orgmode.org/manual/Structure-Editing.html</a> </p>
+</div>
+</div>
+<div id="outline-container-org681bea9" class="outline-3">
+<h3 id="org681bea9"><span class="section-number-3">4.6.</span> 把一整个子树标记为 DONE</h3>
+<div class="outline-text-3" id="text-4-6">
+<p> 似乎没有简单的办法，只能用 <code>(org-map-entries)</code> 函数……见<a href="https://emacs.stackexchange.com/questions/52492/change-todo-keywords-of-all-nodes-in-an-orgmode-subtree-in-elisp">此问答</a>以及<a href="https://stackoverflow.com/questions/25930097/emacs-org-mode-quickly-mark-todo-as-done">此问答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org1fdbaac" class="outline-3">
+<h3 id="org1fdbaac"><span class="section-number-3">4.7.</span> 显示图片</h3>
+<div class="outline-text-3" id="text-4-7">
+<p> org-mode 似乎可以在行内显示本地图片，只需用 <code>[[./img/cat.jpg]]</code> 语法即可。用 <code>C-c C-x C-v</code> 开关，见<a href="https://orgmode.org/manual/Images.html">手册</a>。 </p></p>
+</div>
+</div>
+<div id="outline-container-orgca64512" class="outline-3">
+<h3 id="orgca64512"><span class="section-number-3">4.8.</span> 移动整个子树： <code>M-UP</code> 和 <code>M-DOWN</code></h3>
+<div class="outline-text-3" id="text-4-8">
+<p> <code>M-UP</code> 和 <code>M-DOWN</code> （移动一行是 <code>M-S-UP</code> 和 <code>M-S-DOWN</code> ） </p>
+</div>
+</div>
+<div id="outline-container-org71de75a" class="outline-3">
+<h3 id="org71de75a"><span class="section-number-3">4.9.</span> Code Blocks： <code>C-C C-,</code></h3>
+<div class="outline-text-3" id="text-4-9">
+<p> 用 <code>C-C C-,</code> 召唤<a href="https://orgmode.org/manual/Structure-Templates.html">Structure Template</a>就可以了。 </p>
+<p> <a href="https://orgmode.org/manual/Structure-of-Code-Blocks.html">https://orgmode.org/manual/Structure-of-Code-Blocks.html</a> </p>
+</div>
+</div>
+<div id="outline-container-org2414649" class="outline-3">
+<h3 id="org2414649"><span class="section-number-3">4.10.</span> folding可以不同的分屏： <code>M-x clone-indirect-buffer</code></h3>
+<div class="outline-text-3" id="text-4-10">
+<p> <code>M-x clone-indirect-buffer</code> ，见<a href="https://emacs.stackexchange.com/questions/35309/viewing-two-areas-of-a-file-with-different-folding-side-by-side">此</a>。详见<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Indirect-Buffers.html">手册</a>。 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge988d03" class="outline-2">
+<h2 id="orge988d03"><span class="section-number-2">5.</span> 启动时如何显示</h2>
+<div class="outline-text-2" id="text-5">
+<p> 见文档的<a href="https://orgmode.org/manual/Initial-visibility.html">Initial Visibility</a>部分，也可以用 <code>C-c C-x p</code> (<code>org-set-property</code>) 来设置一个节点的VISIBILITY，参见<a href="https://orgmode.org/manual/Property-Syntax.html">Property Syntax</a>。 </p>
+</div>
+</div>
+<div id="outline-container-orgc0decef" class="outline-2">
+<h2 id="orgc0decef"><span class="section-number-2">6.</span> 外观</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://orgmode.org/worg/org-tutorials/org-appearance.html">https://orgmode.org/worg/org-tutorials/org-appearance.html</a></li>
+</ul>
+</div>
+<div id="outline-container-org91a6c61" class="outline-3">
+<h3 id="org91a6c61"><span class="section-number-3">6.1.</span> Org Indent Mode</h3>
+<div class="outline-text-3" id="text-6-1">
+<p> <code>(org-indent-mode)</code> ，见<a href="https://orgmode.org/manual/Org-Indent-Mode.html">文档</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org24d0dcf" class="outline-3">
+<h3 id="org24d0dcf"><span class="section-number-3">6.2.</span> 设置heading大小为1</h3>
+<div class="outline-text-3" id="text-6-2">
+<p> 使用 <code>M-x customize-face</code> ，见<a href="https://emacs.stackexchange.com/questions/22584/disable-enlarged-org-mode-header-appearance">此回答</a>。（<a href="https://stackoverflow.com/questions/21525436/orgmode-title-levels-height">这个回答</a>可能会破坏theme） <a href="https://www.google.com/search?q=emacs+enlarge+header">Google</a>了下，没发现多少内容——看来没什么需求。 </p>
+</div>
+</div>
+<div id="outline-container-org32d5a85" class="outline-3">
+<h3 id="org32d5a85"><span class="section-number-3">6.3.</span> 中英文对齐 <code>[1/1]</code></h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li class="on"><code>[X]</code> <a href="https://github.com/hick/emacs-chinese">https://github.com/hick/emacs-chinese</a> -&gt; <a href="https://github.com/tumashu/cnfonts">https://github.com/tumashu/cnfonts</a> 实测效果并不怎么好——</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://emacs.stackexchange.com/questions/48586/align-columns-in-org-mode-with-korean-letters">spacemacs - Align columns in Org Mode with Korean letters - Emacs Stack Exchange</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org58fdd56" class="outline-3">
+<h3 id="org58fdd56"><span class="section-number-3">6.4.</span> 美化 Org Mode</h3>
+<div class="outline-text-3" id="text-6-4">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://zzamboni.org/post/beautifying-org-mode-in-emacs/">zzamboni.org | Beautifying Org Mode in Emacs</a></li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://lucidmanager.org/productivity/ricing-org-mode/">Ricing Org Mode: A Beautiful Writing Environment</a></li>
+</ul>
+</div>
+<div id="outline-container-org6e76d06" class="outline-4">
+<h4 id="org6e76d06"><span class="section-number-4">6.4.1.</span> Org Modern</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<p> <a href="https://github.com/minad/org-modern">https://github.com/minad/org-modern</a> </p>
+<p> 好像默认不太能和Org Indent Mode一起开。 </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org622fb75" class="outline-2">
+<h2 id="org622fb75"><span class="section-number-2">7.</span> TODOs</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org96a520e" class="outline-3">
+<h3 id="org96a520e"><span class="section-number-3">7.1.</span> TODO的优先级</h3>
+<div class="outline-text-3" id="text-7-1">
+<p> 见<a href="https://orgmode.org/manual/Priorities.html">手册</a>。似乎1~64都严格高于A，实验可得 A=65 B=66 C=67，以此类推。 </p>
+<p> 如需要更多字母，如下更改即可，见<a href="https://stackoverflow.com/questions/65568623/orgmode-priorities-possible-more-than-a-b-c">此问答</a>。 </p>
+<div class="org-src-container">
+<label class="org-src-name"><em></em></label></p>
+<pre class="src src-elisp" id="nil">(<span style="color: #00bfff;">setq</span>   org-enable-priority-commands t
+    org-highest-priority ?A
+    org-default-priority ?J
+    org-lowest-priority ?J
+)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd5156c9" class="outline-3">
+<h3 id="orgd5156c9"><span class="section-number-3">7.2.</span> 使用计时器</h3>
+<div class="outline-text-3" id="text-7-2">
+<p> <code>C-c C-x 0</code> 开始正计时， <code>C-c C-x ;</code> 开始倒计时。 <code>C-c C-x -</code> 插入时间戳列表， <code>M-RET</code> 继续这个列表。 <code>C-c C-x ,</code> 暂停计时器， <code>C-c C-x _</code> 停止计时器。 </p>
+</div>
+</div>
+<div id="outline-container-orgda8d9c5" class="outline-3">
+<h3 id="orgda8d9c5"><span class="section-number-3">7.3.</span> Creating Timestamps, Deadlines and Scheduling</h3>
+<div class="outline-text-3" id="text-7-3">
+<p> <code>C-c .</code> timestamp &lt;&gt; <code>C-c !</code> inactive timestamp [] <code>C-c C-d</code> DEADLINE <code>C-c C-s</code> SCHEDULED </p>
+</div>
+</div>
+<div id="outline-container-org09f5d45" class="outline-3">
+<h3 id="org09f5d45"><span class="section-number-3">7.4.</span> "[ ]" Items</h3>
+<div class="outline-text-3" id="text-7-4">
+<p> <a href="https://orgmode.org/manual/Breaking-Down-Tasks.html">https://orgmode.org/manual/Breaking-Down-Tasks.html</a> </p>
+</div>
+</div>
+<div id="outline-container-org77688f8" class="outline-3">
+<h3 id="org77688f8"><span class="section-number-3">7.5.</span> Closing Items</h3>
+<div class="outline-text-3" id="text-7-5">
+<p> 在.emacs里加一句 <code>(setq org-log-done 'time)</code> （或者 <code>(setq org-log-done 'note)</code> ）即可，见<a href="https://orgmode.org/manual/Closing-items.html">手册</a>或<a href="https://orgmode.org/guide/Progress-Logging.html">指南</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org726a31b" class="outline-3">
+<h3 id="org726a31b"><span class="section-number-3">7.6.</span> 跟踪TODO</h3>
+<div class="outline-text-3" id="text-7-6">
+<p> 在.emacs里加 <code>(setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))</code> 或者在文件里加 <code>#+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)</code> 即可。 详见<a href="https://orgmode.org/manual/Tracking-TODO-state-changes.html">手册</a>。 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0e73b6f" class="outline-2">
+<h2 id="org0e73b6f"><span class="section-number-2">8.</span> 时间戳</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org4a5dfa9" class="outline-3">
+<h3 id="org4a5dfa9"><span class="section-number-3">8.1.</span> 加带时间戳的note</h3>
+<div class="outline-text-3" id="text-8-1">
+<p> <code>C-c C-z</code> ，见<a href="https://orgmode.org/manual/Drawers.html">手册</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org6400b56" class="outline-3">
+<h3 id="org6400b56"><span class="section-number-3">8.2.</span> 插入带小时和分钟的时间戳</h3>
+<div class="outline-text-3" id="text-8-2">
+<p> 在命令前加个 <code>C-u</code> 即可，见<a href="https://stackoverflow.com/questions/11295973/how-to-insert-current-time-in-the-emacs-org-mode">此回答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org1c27255" class="outline-3">
+<h3 id="org1c27255"><span class="section-number-3">8.3.</span> 重复事件</h3>
+<div class="outline-text-3" id="text-8-3">
+<p> Org本身有简单的语法支持，见<a href="https://orgmode.org/manual/Repeated-tasks.html">Repeated tasks (The Org Manual)</a>，但就如<a href="https://orgmode.org/worg/org-faq.html#org933e218">Org-mode Frequently Asked Questions</a>所言，它局限性很大。 </p>
+<p> 因此，直接 <code>C-c C-x c</code> （ <code>M-x org-clone-subtree-with-time-shift</code> ）复制整个子树并增加偏移即可，见<a href="https://karl-voit.at/2017/01/15/org-clone-subtree-with-time-shift/">UOMF: Recurring Events with Org Mode</a>。 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org04fe52e" class="outline-2">
+<h2 id="org04fe52e"><span class="section-number-2">9.</span> Clock</h2>
+<div class="outline-text-2" id="text-9">
+<p> 见<a href="https://orgmode.org/manual/Clocking-Work-Time.html">手册</a>。 </p>
+<p> 显示一个Task的所有clock时间： </p>
+<ol class="org-ol">
+<li>用 Clock Table</li>
+<li>用</li>
+</ol>
+<p> 持久化：如下，详见<a href="https://orgmode.org/manual/Clocking-Work-Time.html">手册</a>。 </p>
+<div class="org-src-container">
+<label class="org-src-name"><em></em></label></p>
+<pre class="src src-elisp" id="nil">(<span style="color: #00bfff;">setq</span> org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+</pre>
+</div>
+<p> <code>C-c C-x C-i</code> clock-in <code>C-c C-x C-o</code> clock-out <code>C-c C-x C-e</code> update estimate <code>C-c C-x C-q</code> cancel <code>C-c C-x C-j</code> jump to task </p>
+<p> <code>C-c C-x C-x</code> (org-clock-in-last) <code>C-c C-c</code> or <code>C-c C-y</code> (org-evaluate-time-range) <code>S-M-UP</code> (org-timestamp-up) <code>S-M-DOWN</code> (org-timestamp-down) see <a href="https://orgmode.org/manual/Clocking-commands.html">https://orgmode.org/manual/Clocking-commands.html</a> </p>
+</div>
+<div id="outline-container-org077db06" class="outline-3">
+<h3 id="org077db06"><span class="section-number-3">9.1.</span> Manipulating Clocked Time</h3>
+<div class="outline-text-3" id="text-9-1">
+<p> <code>M-S-Up</code> / <code>M-S-Down</code> (also modifies previous clock to avoid overlap)  <a href="https://emacs.stackexchange.com/questions/16983/how-to-manipulate-clock-times-org-mode">https://emacs.stackexchange.com/questions/16983/how-to-manipulate-clock-times-org-mode</a> <code>S-Up</code> / <code>S-Down</code> (does not try to avoid overlap) </p>
+</div>
+</div>
+<div id="outline-container-orge0e57d3" class="outline-3">
+<h3 id="orge0e57d3"><span class="section-number-3">9.2.</span> Show Clocked Time</h3>
+<div class="outline-text-3" id="text-9-2">
+<p> <code>v L</code> in agenda <code>C-u C-u l</code> in agenda &#x2013; <a href="https://emacs.stackexchange.com/questions/19746/get-a-timeline-of-clocked-time-in-org-mode">https://emacs.stackexchange.com/questions/19746/get-a-timeline-of-clocked-time-in-org-mode</a> <code>C-c C-x C-d</code> &#x2013; <a href="https://writequit.org/denver-emacs/presentations/2017-04-11-time-clocking-with-org.html">https://writequit.org/denver-emacs/presentations/2017-04-11-time-clocking-with-org.html</a> </p>
+</div>
+</div>
+<div id="outline-container-orged9373d" class="outline-3">
+<h3 id="orged9373d"><span class="section-number-3">9.3.</span> Clock Table</h3>
+<div class="outline-text-3" id="text-9-3">
+<p> <code>org-clock-report</code> <code>C-c C-c</code> or <code>C-c C-x C-u</code> (org-dblock-updatre) see <a href="https://orgmode.org/manual/The-clock-table.html">https://orgmode.org/manual/The-clock-table.html</a> and <a href="https://orgmode.org/manual/Dynamic-Blocks.html">https://orgmode.org/manual/Dynamic-Blocks.html</a> </p>
+</div>
+</div>
+<div id="outline-container-org1a195db" class="outline-3">
+<h3 id="org1a195db"><span class="section-number-3">9.4.</span> show in agenda</h3>
+<div class="outline-text-3" id="text-9-4">
+<p> <a href="https://emacs.stackexchange.com/questions/53272/show-effort-and-clock-time-in-agenda-view">https://emacs.stackexchange.com/questions/53272/show-effort-and-clock-time-in-agenda-view</a> </p>
+</div>
+</div>
+<div id="outline-container-orgb5cd8fc" class="outline-3">
+<h3 id="orgb5cd8fc"><span class="section-number-3">9.5.</span> <a href="https://github.com/dfeich/org-clock-convenience">org-clock-convenience</a></h3>
+</div>
+<div id="outline-container-org66348a0" class="outline-3">
+<h3 id="org66348a0"><span class="section-number-3">9.6.</span> <a href="https://imbmax.com/posts/emacs-as-a-time-tracker/">Emacs as a Time Tracker | Bhanuka Mallawaarachchi</a></h3>
+<div class="outline-text-3" id="text-9-6">
+<p> 一个推荐Emacs的博文。 </p>
+</div>
+</div>
+<div id="outline-container-org8ea8272" class="outline-3">
+<h3 id="org8ea8272"><span class="section-number-3">9.7.</span> <a href="https://sachachua.com/blog/2007/12/clocking-time-with-emacs-org/">Clocking Time with Emacs Org :: Sacha Chua</a></h3>
+</div>
+<div id="outline-container-orga0b7f3c" class="outline-3">
+<h3 id="orga0b7f3c"><span class="section-number-3">9.8.</span> 继续最后一个clock</h3>
+</div>
+</div>
+<div id="outline-container-org793c8fd" class="outline-2">
+<h2 id="org793c8fd"><span class="section-number-2">10.</span> 打开手册</h2>
+<div class="outline-text-2" id="text-10">
+<p> <code>C-h i</code> <code>m</code> <code>org&lt;RET&gt;</code> 即可，见<a href="https://emacs.stackexchange.com/questions/36504/can-you-directly-open-the-org-mode-manual-in-the-emacs-client">这个问答</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org0b9a8e9" class="outline-2">
+<h2 id="org0b9a8e9"><span class="section-number-2">11.</span> 跨文件搜索</h2>
+<div class="outline-text-2" id="text-11">
+<p> <code>C-c a</code> 打开 <code>org-agenda</code> ，然后 <code>s</code> 进行全文搜索，见<a href="https://orgmode.org/manual/Search-view.html">手册</a>。 <code>m</code> 进行tag搜索，见<a href="https://orgmode.org/manual/Tag-Searches.html">手册</a>。 </p>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.google.com/search?q=org-mode+search+in+all+agenda+files">https://www.google.com/search?q=org-mode+search+in+all+agenda+files</a></li>
+<li class="off"><code>[&#xa0;]</code> 复杂的搜索逻辑
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://orgmode.org/worg/org-tutorials/advanced-searching.html">https://orgmode.org/worg/org-tutorials/advanced-searching.html</a></li>
+</ul>
+</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://emacs.stackexchange.com/questions/10012/a-search-interface-for-org-mode-files">https://emacs.stackexchange.com/questions/10012/a-search-interface-for-org-mode-files</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2929bca" class="outline-2">
+<h2 id="org2929bca"><span class="section-number-2">12.</span> RSS Feeds</h2>
+<div class="outline-text-2" id="text-12">
+<p> <a href="https://orgmode.org/manual/RSS-Feeds.html">https://orgmode.org/manual/RSS-Feeds.html</a> </p>
+</div>
+</div>
+<div id="outline-container-org7c043b1" class="outline-2">
+<h2 id="org7c043b1"><span class="section-number-2">13.</span> 博客</h2>
+<div class="outline-text-2" id="text-13">
+<p> 详见<a href="https://orgmode.org/worg/org-blog-wiki.html">Worg</a>。 </p>
+</div>
+</div>
+<div id="outline-container-org8e3adc4" class="outline-2">
+<h2 id="org8e3adc4"><span class="section-number-2">14.</span> Column View</h2>
+<div class="outline-text-2" id="text-14">
+<p> 详见<a href="https://orgmode.org/manual/Column-View.html">手册</a>。 </p>
+<p> Agenda里见<a href="https://orgmode.org/manual/Agenda-Column-View.html">手册的这里</a>。 </p>
+<p> 在文件开头用 <code>#+COLUMNS: %25ITEM %TAGS %PRIORITY %TODO</code> 或者在根节点加个 <code>:COLUMNS:</code> 的属性即可。属性见<a href="https://orgmode.org/manual/Special-Properties.html">手册这部分</a>。 </p>
+<p> 用 <code>C-c C-x C-c</code> 即可打开， <code>e</code> 编辑， <code>q</code> 退出， <code>&lt;</code> 和 <code>&gt;</code> 改变列宽度， <code>S-M-RIGHT</code> 增加新的一列，见<a href="https://orgmode.org/manual/Using-column-view.html">这部分手册</a>。 </p>
+</div>
+<div id="outline-container-org1d29a57" class="outline-3">
+<h3 id="org1d29a57"><span class="section-number-3">14.1.</span> 时间戳</h3>
+<div class="outline-text-3" id="text-14-1">
+<p> 在 <code>#+COLUMNS</code> 里加一个 <code>%TIMESTAMP_IA</code> 即可。 </p>
+</div>
+</div>
+<div id="outline-container-org239a75a" class="outline-3">
+<h3 id="org239a75a"><span class="section-number-3">14.2.</span> 卡顿</h3>
+<div class="outline-text-3" id="text-14-2">
+<p> 就如 <a href="https://www.reddit.com/r/orgmode/comments/arg7fk/large_lifelogging_orgmode_file_gets_too_slow/">Large life-logging org-mode file gets too slow : orgmode</a> 所说的一样，在大文件里（或 org-agenda 中）用 Column View 会卡顿。 </p>
+<p> 有人建议用 <code>#+STARTUP: showeverything</code> ——虽然不知道有什么用。 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org21bfc52" class="outline-2">
+<h2 id="org21bfc52"><span class="section-number-2">15.</span> Dynamic Blocks</h2>
+<div class="outline-text-2" id="text-15">
+<p> <a href="https://orgmode.org/manual/Dynamic-Blocks.html">https://orgmode.org/manual/Dynamic-Blocks.html</a> </p>
+<p> <code>C-c C-x x</code> 创建， <code>C-c C-x u</code> 更新（前面加个 <code>C-u</code> 更新所有） </p>
+</div>
+<div id="outline-container-org4fa424f" class="outline-3">
+<h3 id="org4fa424f"><span class="section-number-3">15.1.</span> Capturing Column View</h3>
+<div class="outline-text-3" id="text-15-1">
+<p> <a href="https://orgmode.org/manual/Capturing-column-view.html">https://orgmode.org/manual/Capturing-column-view.html</a> </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2d718d7" class="outline-2">
+<h2 id="org2d718d7"><span class="section-number-2">16.</span> Refile</h2>
+<div class="outline-text-2" id="text-16">
+<p> <code>C-c C-w</code> ，见<a href="https://orgmode.org/manual/Refile-and-Copy.html">手册</a>。</p>
+</div>
+</div>

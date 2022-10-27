@@ -1,0 +1,100 @@
+---
+layout: post
+title: Mediawiki
+date: 2022-10-27 23:45:00.000000000 +08:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- 输出
+tags: []
+meta: {}
+author:
+  login: admin
+  email: chengefei2003@163.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+permalink: "/2022/10/27/mediawiki/"
+---
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6094320">1. 常见问题</a>
+<ul>
+<li><a href="#orge2e395f">1.1. <span class="todo TODO">TODO</span> Visual Editor "Error contacting the Parsoid/RESTBase server (HTTP 404)"</a>
+<ul>
+<li><a href="#org93b8a1a">1.1.1. 试着安装下 Parsoid 试试：</a></li>
+</ul>
+</li>
+<li><a href="#orgd4a53ee">1.2. 不能将上传内容存储至暂存处（UploadStashFileException）：“无法创建目录“mwstore://local-backend/local-temp/2/2b”。”。</a></li>
+<li><a href="#org1322041">1.3. HTTP ERROR 500</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p> 吐嘈：这玩意编辑起来也太过于麻烦了吧……什么鬼啊。 </p>
+<div id="outline-container-org6094320" class="outline-2">
+<h2 id="org6094320"><span class="section-number-2">1.</span> 常见问题</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge2e395f" class="outline-3">
+<h3 id="orge2e395f"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Visual Editor "Error contacting the Parsoid/RESTBase server (HTTP 404)"</h3>
+<div class="outline-text-3" id="text-1-1">
+<p> <a href="https://www.google.com/search?q=mediawiki+visual+editor+Error+contacting+the+Parsoid%2FRESTBase+server+%28HTTP+404%29">Google</a>到了很多东西，但没有什么有用的……基本都是说在一个“子页面”或者在一个“私人Wiki”上会出现这种问题……但我两者都不是。目前没有找到有效的解决方法。 </p>
+<p> 复现：安装一个崭新的 MediaWiki（1.38.4），丢到 <code>/var/www/html/mediawiki</code> 下，正常安装（把权限也正常设置）。然后使用 Visual Editor。 </p>
+<p> 尝试退回到旧版本（1.35.8）使用，但还是不行……什么鬼啊。 </p>
+<p> 找到的相关页面： </p>
+<ul class="org-ul">
+<li><a href="https://en.wikipedia.org/wiki/Wikipedia:VisualEditor/Feedback">Wikipedia:VisualEditor/Feedback - Wikipedia</a></li>
+<li><a href="https://www.mediawiki.org/wiki/Extension:VisualEditor">Extension:VisualEditor - MediaWiki</a></li>
+<li><a href="https://www.mediawiki.org/wiki/Help:VisualEditor/User_guide">Help:VisualEditor/User guide - MediaWiki</a></li>
+</ul>
+</div>
+<div id="outline-container-org93b8a1a" class="outline-4">
+<h4 id="org93b8a1a"><span class="section-number-4">1.1.1.</span> 试着安装下 Parsoid 试试：</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p> <a href="https://www.mediawiki.org/wiki/Parsoid/JS/Setup">https://www.mediawiki.org/wiki/Parsoid/JS/Setup</a> </p>
+<div class="org-src-container">
+<label class="org-src-name"><em></em></label></p>
+<pre class="src src-sh" id="nil">sudo apt install dirmngr
+sudo apt-key advanced --keyserver keys.gnupg.net --recv-keys AF380A3036A03444
+</pre>
+</div>
+<p> 把所有的命令都试过了，但还是添加不了啊key……麻烦，跳过吧。 </p>
+<div class="org-src-container">
+<label class="org-src-name"><em></em></label></p>
+<pre class="src src-sh" id="nil">sudo apt-add-repository <span style="color: #deb887;">"deb https://releases.wikimedia.org/debian jessie-mediawiki main"</span>
+sudo apt install apt-transport-https
+sudo apt update &amp;&amp; sudo apt install parsoid
+</pre>
+</div>
+<p> 最后报错了……没法从wikimedia.org下这个包……麻烦死了…… </p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd4a53ee" class="outline-3">
+<h3 id="orgd4a53ee"><span class="section-number-3">1.2.</span> 不能将上传内容存储至暂存处（UploadStashFileException）：“无法创建目录“mwstore://local-backend/local-temp/2/2b”。”。</h3>
+<div class="outline-text-3" id="text-1-2">
+<p> 权限问题，这样即可，来自<a href="https://www.cnblogs.com/fengzhiwu/p/5521222.html">Ubuntu配置LAMP+MediaWiki及常见问题 - 风之舞555 - 博客园</a>。 </p>
+<div class="org-src-container">
+<label class="org-src-name"><em></em></label></p>
+<pre class="src src-sh" id="nil">sudo chown -R www-data:www-data images/
+sudo chmod -R 755 images/
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1322041" class="outline-3">
+<h3 id="org1322041"><span class="section-number-3">1.3.</span> HTTP ERROR 500</h3>
+<div class="outline-text-3" id="text-1-3">
+<p> PHP加载的时候报错的话就会这样，检查下 .php 文件的正确性就好了。 </p>
+<p> 我的话，是不小心在 mediawiki/mediawiki 又解压了一遍…… </p>
+<p> 把一些代码加到php文件里就可以显示具体错误，对debug有帮助，见<a href="https://stackoverflow.com/questions/17693391/500-internal-server-error-for-php-file-not-for-html">500 Internal Server Error for php file not for html - Stack Overflow</a>。</p>
+</div>
+</div>
+</div>

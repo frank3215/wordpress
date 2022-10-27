@@ -1,0 +1,43 @@
+---
+layout: post
+title: TiddlyWiki 导出静态网站
+date: 2022-10-28 00:23:00.000000000 +08:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- 技术
+tags:
+- TiddlyWiki
+- 个人网站
+- 博客
+- 静态网站
+meta: {}
+author:
+  login: admin
+  email: chengefei2003@163.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+permalink: "/2022/10/28/tiddlywiki-%e5%af%bc%e5%87%ba%e9%9d%99%e6%80%81%e7%bd%91%e7%ab%99/"
+---
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfaa1f62">1. 文件名长度限制</a></li>
+</ul>
+</div>
+</div>
+<p> 为什么要导出静态站？——获得可搜索性！原来的 2MB+ 的文件即使搜索到了也找不到上下文…… </p>
+<p> 我根据文档<a href="https://tiddlywiki.com/static/Generating%2520Static%2520Sites%2520with%2520TiddlyWiki.html">Generating Static Sites with TiddlyWiki</a>的例子尝试了一下，目前导出的成果在 <a href="http://frank3215.github.io/wiki/static.html">http://frank3215.github.io/wiki/static.html</a> 。 </p>
+<div id="outline-container-orgfaa1f62" class="outline-2">
+<h2 id="orgfaa1f62"><span class="section-number-2">1.</span> 文件名长度限制</h2>
+<div class="outline-text-2" id="text-1">
+<p> 有文件名长度限制也没办法……但是 <code>哈佛大学公开课：幸福课</code> 的正常中文名，导出之后会变成类似 <code>%25E5%2593%2588%25E4%25BD%259B%25E5%25A4%25A7%25E5%25AD%25A6%25E5%2585%25AC%25E5%25BC%2580%25E8%25AF%25BE%25EF%25BC%259A%25E5%25B9%25B8%25E7%25A6%258F%25E8%25AF%25BE.html</code> 的东西，变得极长无比……看<a href="https://frank3215.github.io/wiki/static/%25E5%2593%2588%25E4%25BD%259B%25E5%25A4%25A7%25E5%25AD%25A6%25E5%2585%25AC%25E5%25BC%2580%25E8%25AF%25BE%25EF%25BC%259A%25E5%25B9%25B8%25E7%25A6%258F%25E8%25AF%25BE.html">此页面</a>的URL就知道了。 </p>
+<p> 因此，我导出时，加了个 filter ，只导出了标题长度不超过20的条目……很离谱。因为我不太会 filter，这个 filter 是直接抄自<a href="https://tiddlywiki.com/static/filter%2520Operator.html">filter Operator</a>文档最后的例子的，即 <code>:filter[get[title]length[]compare:integer:gteq[1000]]</code> 。 </p>
+<p> 我往周围看了下，发现有人的<a href="https://hintsnet.com/digital-garden/">静态站</a>是直接用时间戳+英文作为名字（类似URL Plug），把中文名放到，改了下显示方式……离谱。</p>
+</div>
+</div>
